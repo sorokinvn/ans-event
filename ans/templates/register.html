@@ -1,0 +1,50 @@
+{% extends 'base_item.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block body %}
+<br>
+<div class="container-fluid d-flex justify-content-center" style="min-height: calc(100vh - 120px);">
+    <form method="POST" class="form-horizontal">
+        <div class="form-group" style="font-size: 16px; min-width: 400px;">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <ul class="list-group">
+                <li class="list-group-item active bg-danger text-white"> {{ message }} </li>
+            </ul>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item active">Введите данные Пользователя:</li>
+            <li class="list-group-item"><input type="text" class="form-control form-control-sm" name="surname" id="surname" placeholder="Фамилия"></li>
+            <li class="list-group-item"><input type="text" class="form-control form-control-sm" name="name" id="name" placeholder="Имя"></li>
+            <li class="list-group-item"><input type="text" class="form-control form-control-sm" name="patronymic" id="patronymic" placeholder="Отчество"></li>
+            <li class="list-group-item"> Дата рождения: <input type="date" id="birth" name="birth" value="{{ dn }}"></li>
+            <li class="list-group-item">
+                <label for="object">Объект:</label><br>
+                <select class="form-control" style="font-size: 14px;" aria-label=".form-select-lg example" name="object" id="object">
+                {% for el in objects %}
+                <option value="{{ el.object }}">{{ el.object }}</option>
+                {% endfor %}
+                </select><br>
+            </li>
+            <li class="list-group-item"><input type="text" class="form-control form-control-sm" name="position" id="position" placeholder="Должность"></li>
+            <li class="list-group-item"><input type="text" class="form-control form-control-sm" name="phone_mobile" id="phone_mobile" placeholder="тлф. Мобильный"></li>
+            <li class="list-group-item"><input type="text" class="form-control form-control-sm" name="phone" id="phone" placeholder="тлф. Рабочий"></li>
+            <li class="list-group-item"><input type="text" class="form-control form-control-sm" name="email" id="email" placeholder="E@mail"></li>
+        </ul>
+        <br>
+        <ul class="list-group">
+            <li class="list-group-item active">Придумайте Логин и Пароль:</li>
+            <li class="list-group-item"><input type="text" class="form-control form-control-sm" name="login" id="login" placeholder="Логин"></li>
+            <li class="list-group-item"><input type="password" class="form-control form-control-sm" name="password" id="password" placeholder="Пароль"></li>
+        </ul>
+        <br>
+        <button type="submit" class="btn btn-outline-primary float-right btn-sm" name="register" value="register">Ok</button>
+        <a class="btn btn-outline-primary btn-sm" href="/login">Назад</a>
+    </form>
+</div>
+{% endblock %}

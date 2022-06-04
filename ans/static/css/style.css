@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.table {
+    font-size: 12px;
+}
+
+.content_item {
+    min-height: calc(100vh - 260px);
+    overflow-x: hidden!important;
+    font-size: 12px;
+}
+
+
+.form-container {
+    width: 100vw;
+    height: max-content;
+    background: #ecf0f3;
+    font-family: helvetica, sans-serif;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: none;
+    font-size: 14px;
+}
+
+.btn {
+    width: 100px;
+}
+
+.navbar {
+    background-color: #333333;
+}
+
+footer {
+    background: #EAEDED;
+}
+
+li {
+    font-size: 14px;
+}
+
+.alarm {
+    color: #14E3BE;
+}
+
+.btn-rounded {
+    border-radius: 19px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+}

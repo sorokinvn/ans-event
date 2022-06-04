@@ -1,0 +1,46 @@
+{% extends 'base_item.html' %}
+
+{% block title %} Запись {% endblock %}
+
+{% block user %} <a href="/logout" class="navbar-brand d-inline-block align-top float-righ" style="color: #DAF7A6; font-size: 16px;"><i class="fa fa-sign-out" aria-hidden="true"></i> {{ personal }} </a> {% endblock %}
+
+{% block menu %}
+<br>
+<div class="container-fluid" style="font-size: 14px;">
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a class="btn btn-outline-primary btn-sm" style="width: 100px;" href="/items_page"><i class="fa fa-home fa-fw"></i>Журнал</a></li>
+    </ul>
+</div>
+<br>
+{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-center font-weight-bold"> НОВАЯ ЗАПИСЬ </div><br>
+<div class="container-fluid d-flex justify-content-center">
+        <div class="form-container">
+            <form method="POST" class="form-horizontal">
+                <label for="dstart">Дата и время начала события:</label><br>
+                <input type="date" id="dstart" name="dstart" value="{{ dn }}">
+                <input type="time" id="tstart" name="tstart" step="1" value="{{ tn }}"><br><br>
+                <label for="dstart">Дата и время окончания события:</label><br>
+                <input type="date" id="dend" name="dend" value="{{ dn }}">
+                <input type="time" id="tend" name="tend" step="1" value="{{ tn }}"><br><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Событие находится на контроле</label>
+                </div><br><br>
+                <label for="object">Объект:</label><br>
+                <input type="text" class="form-control" style="font-size: 14px;" name="object" id="object" readonly value="{{ object }}"><br>
+                <label for="author">Автор:</label><br>
+                <input type="text" class="form-control" style="font-size: 14px;" name="author" id="author" readonly value="{{ personal }}"><br>
+                <label for="theme">Тема события:</label><br>
+                <input type="text" class="form-control" style="font-size: 14px;" name="theme" id="theme"><br>
+                <label for="textarea1">Текст события:</label><br>
+                <textarea class="form-control" style="font-size: 14px;" id="textarea1" name="textarea1" rows="3"></textarea><br>
+
+                <button type="submit" class="btn btn-outline-primary float-right btn-sm" name="register" value="register">Сохранить</button>
+            </form>
+        </div>
+</div>
+{% endblock %}
+

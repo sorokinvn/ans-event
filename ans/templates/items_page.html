@@ -1,0 +1,78 @@
+{% extends 'base_item.html' %}
+
+{% block title %} Журнал Отделения {% endblock %}
+
+
+{% block user %} <a href="/logout" class="navbar-brand d-inline-block align-top float-righ" style="color: #DAF7A6; font-size: 16px;"><i class="fa fa-sign-out" aria-hidden="true"></i> {{ personal }} </a> {% endblock %}
+
+{% block menu %}
+<br>
+<div class="container-fluid" style="font-size: 14px;">
+    <ul class="nav nav-pills">
+<!--        <li class="nav-item"><a class="btn btn-outline-success btn-sm" style="width: 100px;" href="/items_create_page">Создать</a></li>-->
+        <li class="nav-item"><a class="btn btn-outline-info btn-sm" style="width: 100px;" href="/users_page"><i class="fa fa fa-child fa-fw" aria-hidden="true"></i>Персонал</a></li>
+        <li class="nav-item"><a class="btn btn-outline-info btn-sm" style="margin-left: 10px; width: 100px;" href="/objects_page"><i class="fa fa-university fa-fw" aria-hidden="true"></i>Объекты</a></li>
+    </ul>
+    <br>
+    <input class="form-control w-100" style="font-size: 14px;" type="text" id="search-text" onkeyup="tableSearch()" placeholder=" Поиск" aria-label="Search">
+</div>
+<br>
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid"  style="height: 680px; max-width:100%; overflow-x: hidden!important;">
+<table class="table table-bordered table-hover table-sm" id="info-table">
+    <thead class="thead-dark" style="position: sticky;top: 0;">
+        <tr>
+            <th style="width:2%; text-align:center" scope="col">!</th>
+            <th style="width:8%; text-align:center" scope="col">Начало</th>
+            <th style="width:8%; text-align:center" scope="col">Окончание</th>
+            <th style="width:8%; text-align:center" scope="col">Объект</th>
+            <th style="width:10%; text-align:center" scope="col">Тема</th>
+            <th style="width:47%; text-align:center" scope="col">Текст</th>
+            <th style="width:15%; text-align:center" scope="col">Автор</th>
+<!--            <th style="width:8%; text-align:center" scope="col">Править</th>-->
+        </tr>
+    </thead>
+    <tbody>
+        {% for el in data %}
+        <tr {% if el.control == True %} class = "alarm" {% endif %}>
+            <td class="align-middle" style="text-align:center; color: {{ color_font }}"> {% if el.control == True %} # {% endif %} </td>
+            <td class="align-middle" style="text-align:center; color: {{ color_font }}"> {{ el.dtstart }} </td>
+            <td class="align-middle" style="text-align:center"> {{ el.dtend }} </td>
+            <td class="align-middle" style="text-align:center"> {{ el.object }} </td>
+            <td class="align-middle" style="text-align:center"> {{ el.theme }} </td>
+            <td class="align-middle"> {{ el.text }} </td>
+            <td class="align-middle" style="text-align:center"> {{ el.author }} </td>
+<!--            <td class="align-middle" style="text-align:center;"> <a class="btn btn-outline-info btn-sm" style="width:80px; font-size: 12px;" href="/items_correct/{{ el.id }}"> Править </a> </td>-->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<script>
+    function tableSearch() {
+        var phrase = document.getElementById('search-text');
+        var table = document.getElementById('info-table');
+        var regPhrase = new RegExp(phrase.value, 'i');
+        var flag = false;
+        for (var i = 1; i < table.rows.length; i++) {
+            flag = false;
+            for (var j = table.rows[i].cells.length - 1; j >= 0; j--) {
+                flag = regPhrase.test(table.rows[i].cells[j].innerHTML);
+                if (flag) break;
+            }
+            if (flag) {
+                table.rows[i].style.display = "";
+            } else {
+                table.rows[i].style.display = "none";
+            }
+
+        }
+    }
+</script>
+
+{% endblock %}
+
